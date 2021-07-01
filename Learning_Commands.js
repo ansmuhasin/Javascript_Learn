@@ -1,25 +1,26 @@
 //! What is Javascript
-//+ JavaScript is a dynamic, weakly typed programming language which is compiled at runtime. It can be executed as part of a webpage in a browser or directly on any
-//+ machine (“host environment”).
-//+ JavaScript was created to make webpages more dynamic (e.g. change content on a page directly from inside the browser). Originally, it was called LiveScript but due to
-//+ the popularity of Java, it was renamed to JavaScript.
-//+ JavaScript is totally independent from Java and has nothing in common with Java
-//+ JavaScript is case sensitive
+//+ JavaScript is a dynamic, weakly typed programming language which is compiled at runtime. It can be executed as part of a
+//+ webpage in a browser or directly on any machine (“host environment”).
+//+ JavaScript was created to make webpages more dynamic (e.g. change content on a page directly from inside the browser).
+//+ Originally, it was called LiveScript but due to the popularity of Java, it was renamed to JavaScript.
+//+ JavaScript is totally independent from Java and has nothing in common with Java. JavaScript is case sensitive
 // !Dynamic? Weakly Typed
 //+ Dynamic, interpreted Programming Language.
 //+ Not pre-compiled, instead parsed and compiled “on the fly” (e.g. in the browser)
 //+ Code evaluated and executed at runtime. Code can change at runtime (e.g. type of a variable)
 //+ Weakly Typed Programming Language
-//+ Data types are assumed (e.g. assigned to variables) automatically. You don’t define that some variable has to hold a certain value (e.g. a number) .
-//+ Data types are not set in stone but can change
+//+ Data types are assumed (e.g. assigned to variables) automatically. You don’t define that some variable has to hold a certain
+//+ value (e.g. a number) . Data types are not set in stone but can change
 
 //! JavaScript Runs On A Host Environment
 //+ Browser-side
-//+ JavaScript was invented to create more  dynamic websites by executing in the  browser! JavaScript can manipulate the HTML code, CSS, send background Http requests & much more
+//+ JavaScript was invented to create more  dynamic websites by executing in the  browser! JavaScript can manipulate the HTML code,
+//+ CSS, send background Http requests & much more
 //+ JavaScript CAN’T access the local filesystem, interact with the operating system etc
 //+ “Other” (e.g. Server-side)
-//+ Google’s JavaScript Engine (V8) was  extracted to run JavaScript anywhere  (called “Node.js”) Node.js can be executed on any machine and is therefore often used
-//+ to build web  backends (server-side JavaScript) Node.js CAN access the local filesystem, interact with the operating system etc. It CAN’T manipulate HTML or CSS
+//+ Google’s JavaScript Engine (V8) was  extracted to run JavaScript anywhere  (called “Node.js”) Node.js can be executed on any
+//+ machine and is therefore often used to build web backend (server-side JavaScript) . Node.js CAN access the local filesystem,
+//+ interact with the operating system etc. It CAN’T manipulate HTML or CSS
 
 //* To import the js file
 //* <script src="./assets/scripts/app.js"></script>
@@ -29,7 +30,7 @@
 //! Variables and constants
 //+ we can use let keyword to initialize a variable. and we can change the value along the way
 let variableName = "value";
-//+ we can use constant as well. the value is not changable and throws error
+//+ we can use constant as well. the value is not changeable and throws error
 const constantName = "value";
 
 //+ there are operators like + - * / % and ** for exponential. also =
@@ -74,12 +75,12 @@ typeof "name"; //+ to find the type of the variable. this returns "string"
 //+ order of execution of script is not guaranteed here. if there are two script importing.. then both can execute same time
 
 //+ ctrl + shift + space for help parameter menu
-//+ we can use source window for finding the code and putting debugger. also we can put conditional breakpoint aswell.
+//+ we can use source window for finding the code and putting debugger. also we can put conditional breakpoint as well.
 //+ we can change the values of file directly to the local file from browser without reloading. also we can select event listeners to trigger debugging
 
 //+  === operator is used to check the value as well as the type
 
-//+ we cannot check eqquality of 2 objects which are looks same. it gives false
+//+ we cannot check equality of 2 objects which are looks same. it gives false
 let v1 = { name: "Max" };
 let v2 = { name: "Max" };
 
@@ -91,7 +92,7 @@ v3 === v1; //+ this will be true
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
 
 //! truly and falsy values
-//+ In some cases, even if we don't provide any condition bolean check, still js can return true or false, if the variable is a truely value
+//+ In some cases, even if we don't provide any condition boolean check, still js can return true or false, if the variable is a truthy value
 let nameCheck = "Max";
 if (nameCheck) {
   //+ this can return true
@@ -210,25 +211,26 @@ try {
 //+ Generally same syntax as ES6, but quite some missing feature
 
 //% ES6
-//+ Supported in modern browsers, can (mostly) be transpiled to ES5
+//+ Supported in modern browsers, can (mostly) be transpiler to ES5
 //+ Many new features that help us write cleaner, better & faster code
 //+ Still under active development, but ES6 was a big step forward
 
 //% var and let
-//+ if we initialize a global variable as name. and if we initialise samevariable again inside the function, it will not throw error. it will shadow the global variable. but if we re create same variable using let in global scope. it throws error.
+//+ if we initialize a global variable as name. and if we initialize same variable again inside the function, it will not throw error.
+//+ it will shadow the global variable. but if we re create same variable using let in global scope. it throws error.
 //+ but for var, we can re create the variable in global scope as well.
 
 //+ let and const are available in block level. inside{}. and will not be available outside
 //+ we can use both let var and const in global scope
 
-//+ if we initialize the variable using var at the end of code and try to use it before initialization, it will not throw error and return undefined as value
-//+ but let and const will throw error.
+//+ if we initialize the variable using var at the end of code and try to use it before initialization, it will not throw error and return
+//+ undefined as value but let and const will throw error.
 //+ let and const is block level, available inside the if statement only
 console.log(userName); //+ here output will be undefined. but for let, it will be an error. because for var, the variable is initialized with undefined.
 
 var userName = "Ans";
 
-//+ if we dont mention var while initializing a variable. it will still work
+//+ if we don't mention var while initializing a variable. it will still work
 userAge = 100; //+ this will work, and js automatically add var.
 //+ we can turn this off bu turning on strict mode
 ("use strict"); //+ this will turn on strict mode
@@ -244,7 +246,7 @@ userAge = 100; //+ this will work, and js automatically add var.
 //+ Stored in memory (Heap), variable stores a pointer (address) to location in memory
 //+ Copying a variable (= assign to different variable) copies the pointer/ reference
 
-//% to copy object tot new object, we can use
+//% to copy object to new object, we can use
 let person = { age: 30 };
 let newPerson = { ...person }; //+ this will create a new object with different reference
 let hobbies = ["cricket"];
@@ -261,7 +263,7 @@ let start = function startGame() {
   alert("Starting game");
 };
 //+ but in this case, we need to call it after initialized. if we try to call the function before initialized it will return undefined.
-//+ but normal function can be aclled from anywhere without initializing.it automatically calls the function
+//+ but normal function can be called from anywhere without initializing.it automatically calls the function
 
 //% Anonymous functions
 attackBtn.addEventListener("click", function () {
@@ -280,7 +282,7 @@ let start = (value) => {
 
 let start = (value) => value + 1;
 //+ we can us this as well and directly return
-//+ if there is no statementts in the body, we should use {}
+//+ if there is no statements in the body, we should use {}
 //+ if there is one parameter, we can omit the ()
 //+ one statement, then we can eliminate {}
 //% we can use .toUpperCase() in a string to convert it to uppercase.
@@ -288,7 +290,7 @@ let start = (value) => value + 1;
 let start = function startGame(value, value2 = 10) {
   alert("Starting game");
 };
-start(1); //+ here second value by default it will be 10.  even if we pass undefined, still it will take the defualt value
+start(1); //+ here second value by default it will be 10.  even if we pass undefined, still it will take the default value
 
 let start = function startGame(...value) {
   //+here everything we pass will be consider as a array
@@ -302,7 +304,7 @@ let start = function startGame(...value) {
 start(1, 54, 7, 2, 77, 2); //+ Input values will be converted to an array
 //+ always better to declare this parameter at the end
 //+ we can use arguments keyword to get the input as array as well.
-let start = function startGame() {
+let start = function startGame(v, ...arguments) {
   //+here everything we pass will be consider as a array
   let sum = 0;
   for (const el of arguments) {
@@ -315,7 +317,7 @@ let start = function startGame() {
 start(1, 54, 7, 2, 77, 2);
 
 //% callback functions
-//+ we can pass a function as variable and we can ustilise that funvction
+//+ we can pass a function as variable and we can utilise that function
 let start = function startGame(resultHandler, ...values) {
   //+here everything we pass will be consider as a array
   let sum = 0;
@@ -329,7 +331,8 @@ const alertResult = (sum) => alert("the result is" + sum);
 
 start(alertResult, 1, 56, 83, 6, 98, 4, 2); //+ we can pass the function as the variable
 //+ here we are passing a pointer to the function and we are finally calling the function. this is how event handler works
-//+ if we want to pass some values to  the callback function early itself, we can pass it using .bind() method. first argument is this, then we can pass other inputs. whenever we pass more parameters to the callback function
+//+ if we want to pass some values to  the callback function early itself, we can pass it using .bind() method. first argument is this,
+//+ then we can pass other inputs. whenever we pass more parameters to the callback function
 let start = function startGame(resultHandler, ...values) {
   //+here everything we pass will be consider as a array
   let sum = 0;
@@ -342,7 +345,7 @@ let start = function startGame(resultHandler, ...values) {
 const alertResult = (message, sum) => alert(message + sum);
 start(alertResult.bind(this, "output is : "), 1, 56, 83, 6, 98, 4, 2); //+ here the 'output is : ' will send as first argument to the callback function.
 
-//+ .apply() and .call() methods will immediatly call the function. start.call()
+//+ .apply() and .call() methods will immediately call the function. start.call()
 
 //! The Document Object Model (DOM)
 //+Exposes Web API to allow JavaScript to work with the parsed document
@@ -356,8 +359,10 @@ start(alertResult.bind(this, "output is : "), 1, 56, 83, 6, 98, 4, 2); //+ here 
 //% there are element node as well as text node in DOM
 //+ element node is the representation of the element. and text node is representation of text.
 
-//% querySelector(), getElementById() returns single element. different ways of querying elements(by css selector, by id). Direct reference to DOM is returned
-//% querySelectorAll(), getElementByTagName() Return collection of elements(array like object) nodelist. different ways of querying elements by css selector , by tag name , by css class). quey selectorAll() returns a non-live Nodelist, getXbyY returns live nodelist
+//% querySelector(), getElementById() returns single element. different ways of querying elements(by css selector, by id).
+//% Direct reference to DOM is returned querySelectorAll(), getElementByTagName() Return collection of elements(array like object)
+//% node list. different ways of querying elements by css selector , by tag name , by css class). quey selectorAll() returns a
+//% non-live Node list, getXbyY returns live node list
 
 //! finding the elements
 document.getElementById("main-title");
@@ -407,7 +412,8 @@ ul.className = "bg-green"; //+ this will completely replace the classes
 ul.classList.toggle("visible"); //+ this will add or remove depends on the availability of class
 
 //! adding elements
-//+ we can add inner html. replace it or we can append.. but in this case the innerhtml is re render, which deletes the user entered info
+//+ we can add inner html. replace it or we can append.. but in this case the inner html is re render,
+//+ which deletes the user entered info
 
 //+ we can use like this as well
 input.insertAdjacentHTML("afterend", "<p>some content</p>");
@@ -424,7 +430,7 @@ const list = document.querySelector("ul");
 newLi.textContent = "item 4";
 list.appendChild(newLi); //+append the element to the other element
 
-list.append("new value"); //+ we can use append as well. IE dowsnt support
+list.append("new value"); //+ we can use append as well. IE doesn't support
 movieListElement.append(movieListItem);
 list.prepend(newLi); //+ this will add at the beginning
 
@@ -434,7 +440,8 @@ replaceWith(); //+ used for replacing
 list.insertAdjacentElement("afterend", newLi); //+ we can use like this as well
 
 //+ cloning element
-newLi.cloneNode(true); //+ it will clone the element. if we pass true, everything inside will be cloned. if false, only that element is cloned
+newLi.cloneNode(true); //+ it will clone the element. if we pass true, everything inside will be cloned.
+//+ if false, only that element is cloned
 
 //+ querySelectorAll() is having live value
 //+ .getElementByClassName() or other similar will not be live
@@ -454,15 +461,16 @@ document.querySelector("header").lastElementChild;
 
 title.trim(); //+ can be used to trim the text
 movies.splice(index); //+ can be used to remove the array on specific index
-movieListElement.children[index].remove(); //+ deleteing the item using index
+movieListElement.children[index].remove(); //+ deleting the item using index
 
-//+ if we initialize a button event inside another button event. it can lead to multiple existing event on a single button and leads to problem.
-//+ there are technique to solve it. for now we can use these approaches
+//+ if we initialize a button event inside another button event. it can lead to multiple existing event on a single button an
+//+ leads to problem. there are technique to solve it. for now we can use these approaches
 cancelDeleteButton.removeEventListener("click", closeTheModal); //+ we can simply remove the event listener
 
 //+ if the event listener function have a bind. then it will  not be possible to delete. so we can do a hack
 let confirmDeletePopupButton = deleteModalElement.querySelector(".btn--danger");
-confirmDeletePopupButton.replaceWith(confirmDeletePopupButton.cloneNode(true)); //+ we can replace the button with another. so this will remove all the even listeners
+confirmDeletePopupButton.replaceWith(confirmDeletePopupButton.cloneNode(true));
+//+ we can replace the button with another. so this will remove all the even listeners
 confirmDeletePopupButton = deleteModalElement.querySelector(".btn--danger");
 
 //! Arrays
@@ -473,65 +481,72 @@ confirmDeletePopupButton = deleteModalElement.querySelector(".btn--danger");
 
 //% but they ar not real array
 //! Creating an array
-const myarray = [1, 2, 3];
-const myarray2 = new Array(); //+ this is equals to []  . we can remove new keywork, it will work
-const myarray3 = new Array("hello", "world"); //+ this is equals to []
+const myArray = [1, 2, 3];
+const myArray2 = new Array(); //+ this is equals to []  . we can remove new keyword, it will work
+const myArray3 = new Array("hello", "world"); //+ this is equals to ["hello", "world"]
 
-const myarray4 = new Array(5); //+ this will create an empty array of size 5
+const myArray4 = new Array(5); //+ this will create an empty array of size 5
 const array5 = Array.of(1, 2); //+ this will work as well.
 
 const array6 = Array.from(someIterable); //+ this is used to convert an iterable or array like object to array
 const array6 = Array.from("Hi!"); //+ this will create ['H', 'i', '!']
 
-const listItems = document.querySelectorAll("li"); //+ this will create a node list. which is not an actual array. but array like object. all array methods will not be there
+const listItems = document.querySelectorAll("li");
+//+ this will create a node list. which is not an actual array. but array like object. all array methods will not be there
 const array6 = Array.from(listItems); //+ this will convert to real array
 
-const myarray5 = [1, "23"]; //+ we can have different type
+const myArray5 = [1, "23"]; //+ we can have different type
 const array6 = [
   [1, 2],
   [6, 7],
-]; //+ we can have multi dimentional array
+]; //+ we can have multi dimensional array
 
-myarray[0]; //+ can use index. 0index
+myArray[0]; //+ can use index. 0 indexed
 
 //! push and pop
-myarray.push(5); //+ this can be used to push new items at the end of the array. this will return the length as well, if we need it
-myarray.unshift(10); //+ this will add at the beginning of the array. this will return the length as well, if we need it
-const removedItem = myarray.pop(); //+ last element is removed at the end and returned
-myarray.shift(); //+ it removes first item from the array and returned
+myArray.push(5);
+//+ this can be used to push new items at the end of the array. this will return the length as well, if we need it
+myArray.unshift(10); //+ this will add at the beginning of the array. this will return the length as well, if we need it
+const removedItem = myArray.pop(); //+ last element is removed at the end and returned
+myArray.shift(); //+ it removes first item from the array and returned
 //+ shift and unshift are slower than push and pop
 
-myarray[2] = 6; //+ this will replace the item
-myarray[10] = 10; //+ if we try to add it to some none existing index, it add empty items in between and add the item to that index.
+myArray[2] = 6; //+ this will replace the item
+myArray[10] = 10; //+ if we try to add it to some none existing index, it add empty items in between and add the item to that index.
 
 //! splice
-myarray.splice(1, 1); //+ this will delete the second item. it will go to 1 index and delete next 1 item. we can delete multiple items
-myarray.splice(0, 2); //+ this will delete 1st 2 elements
+myArray.splice(1, 1); //+ this will delete the second item. it will go to 1 index and delete next 1 item. we can delete multiple items
+myArray.splice(0, 2); //+ this will delete 1st 2 elements
 
-myarray.splice(0, 0, "hello", "how are you"); //+ this will go to first element and delete next 0 elements and then insert the elements mentioned. as we mention 0 as delete, it will not delete anything, instead insert next items
-myarray.splice(1, 2, "hello", "how are you"); //+ this will go to 1 index and delete next 2 items and then insert in the middle. if we don't want to delete, we can give the delete index as 0
+myArray.splice(0, 0, "hello", "how are you"); //+ this will go to first element and delete next 0 elements and then insert the
+//+ elements mentioned. as we mention 0 as delete, it will not delete anything, instead insert next items
+myArray.splice(1, 2, "hello", "how are you"); //+ this will go to 1 index and delete next 2 items and then insert in the middle.
+//+ if we don't want to delete, we can give the delete index as 0
 
-myarray.splice(2); //+ this will delete everything past to index 0
-myarray.splice(0); //+ this will delete everything in the array
+myArray.splice(2); //+ this will delete everything past to index 2
+myArray.splice(0); //+ this will delete everything in the array
 
 //% splice will return the removed items
 
-myarray.splice(-1, 1); //+ due to -1. this will go to the end and do the operation. here last element  is deleted. -2 will go to second last element
+myArray.splice(-1, 1); //+ due to -1. this will go to the end and do the operation. here last element  is deleted.
+//+ -2 will go to second last element
 
 //! slice
-const newArray = myarray.slice(); //+ this can be used to return a new array
-const slicedArray = myarray.slice(1, 2); //+ this will go to 1st index and select 2 elements and return a new array. we can use -ve values as well
-const resatArray = myarray.slice(2); //+ this will get everything after 2nd index.
+const newArray = myArray.slice(); //+ this can be used to return a new array
+const slicedArray = myArray.slice(1, 2);
+//+ this will go to 1st index and select 2 elements and return a new array. we can use -ve values as well
+const resatArray = myArray.slice(2); //+ this will get everything after 2nd index.
 
 //! concat
-newArray = myarray.concat([5, 6, 7]); //+ this will add one array to another array. push will not work this way, push accepts multiple items
+newArray = myArray.concat([5, 6, 7]);
+//+ this will add one array to another array. push will not work this way, push accepts multiple items
 
-const index = myarray.indexOf(3); //+ this will find the index of that specific value. if there are multiple same values, it only returns the first index.
-index = myarray.indexOf(3, 2); //+ this will search after 2nd index.
+const index = myArray.indexOf(3);
+//+ this will find the index of that specific value. if there are multiple same values, it only returns the first index.
+index = myArray.indexOf(3, 2); //+ this will search after 2nd index.
 
-index = myarray.lastIndexOf(2);
-//+ but finding index of a object will not work and returns -1
-//+ if it didnt find anything.it returns -1
+index = myArray.lastIndexOf(2);
+//+ but finding index of a object will not work and returns -1. if it didn't find anything.it returns -1
 
 //! find
 //+ we can use find to find the object in an array.
@@ -543,7 +558,7 @@ manual = personalData.find((person, index, persons) => {
 
 personalData.findIndex(manual); //+ this can return the index of the object
 
-myarray.includes(5); //+ this will returns true or false if the value exists.
+myArray.includes(5); //+ this will returns true or false if the value exists.
 
 //! foreach
 prices = [13, 53, 65, 23];
@@ -555,14 +570,14 @@ prices.forEach((price, index, prices) => {
 
 const adjPrices = prices.map((price, index, prices) => {
   //+ map should return something. so here we can return the object and it will be combined as a array and we get it as an array
-  const priceObj = newPrices.push({ id: index, price: price * 1.2 });
+  const priceObj = newPrices.push({ id: index, price: price * 1.2 });  //! need to reverify
   return priceObj;
 });
 //+ it will return a new array. and it will not change the parent array
 
 //! Sort
 const sortedPrice = prices.sort((a, b) => {
-  //+ a and b are adjuscent elements
+  //+ a and b are adjacent elements
   if (a > b) {
     return 1;
   } else if (a === b) {
@@ -798,4 +813,17 @@ cartSum.toFixed(2); //+ can be used to floating number
 //! Inheritance
 class Product extends App {
   //+ we can add inheritance like this. only one inheritance supported
+
+  constructor(derivedV) {
+    super(derivedV); //+ we can call base class constructor by super(v) method
+  }
 }
+class App {
+  constructor(value) {
+    this.v = value;
+  }
+}
+
+new Product("something");
+
+//! revisit the concept
