@@ -591,7 +591,8 @@ sortedPrice.reverse(); //+ this will reverse the elements
 
 //! filter
 const filteredArray = prices.filter((price, index, prices) => {
-  //+ here the array which met the condition will be returned and, which does not meet will be not returned. returned items will create a new array. it will not modify the existing one.
+  //+ here the array which met the condition will be returned and, which does not meet will be not returned.
+  //+ returned items will create a new array. it will not modify the existing one.
   return price > 100;
 });
 
@@ -623,9 +624,11 @@ newArray = ["kerala", "tamil", "karnataka", "andhra"];
 const [stateOne, stateTwo, ...otherStates] = newArray; //+ here otherStates will contain all the remaining items from the array.
 
 //% Arrays
-//+ Store (nested) data of any kind and lengthIterable, also many special array methods availableOrder is guaranteed, duplicates are allowed, zero-based index to access elements
+//+ Store (nested) data of any kind and length. Iterable, also many special array methods availableOrder is guaranteed,
+//+ duplicates are allowed, zero-based index to access elements
 //% Sets
-//+ Store (nested) data of any kind and length Iterable, also some special set methods availableOrder is NOT guaranteed, duplicates are NOT allowed, no index-based access
+//+ Store (nested) data of any kind and length. Iterable, also some special set methods available.
+//+ Order is NOT guaranteed, duplicates are NOT allowed, no index-based access
 
 const ids = new Set([1, 2, 3]);
 //+ we can't do ids[1]. not indexed
@@ -635,7 +638,8 @@ ids.add(2); //+ this wont work. because set is unique
 
 ids.delete(3); //+ for delete
 //% Maps
-//+ Store key-value data of any kind and length, any key values are allowedIterable, also some special map methods availableOrder is guaranteed, duplicate keys are NOT allowed, key-based access
+//+ Store key-value data of any kind and length, any key values are allowed. Iterable, also some special map methods available Order
+//+ is guaranteed, duplicate keys are NOT allowed, key-based access
 const person1 = { name: "John" };
 const person2 = { name: "Max" };
 
@@ -698,9 +702,9 @@ const { name, age, ...otherData } = personData; //+ this will create the variabl
 //+ if we want a different name for the variable. then we can do that as well
 const { name: userName, age, ...otherData } = personData; //+ here the name will be saved to variable called userName
 
-//% to check the existance of a property
+//% to check the existence of a property
 if ("name" in personData) {
-  //+ this will check the existance of name property.
+  //+ this will check the existence of name property.
 }
 
 //% this
@@ -712,7 +716,8 @@ let AnotherPersonData = {
     return this.name.toUpperCase(); //+ here this will point to the parent object.
   },
 };
-AnotherPersonData.formattedName(); //+ here will return uppercase name. here anotherPersonData is responsible for calling the function. so it will be the this object
+AnotherPersonData.formattedName(); //+ here will return uppercase name. here anotherPersonData is responsible for calling the
+//+ function. so it will be the this object
 AnotherPersonData = {
   name: "Max",
   age: 20,
@@ -724,7 +729,8 @@ AnotherPersonData = {
 
 //+ this will not work when we try to call the function differently.
 const { formattedName } = anotherPersonData;
-formattedName(); //+ this will not work. here this is not anotherPersonData. because anotherPersonData is not responsible for calling this function. here this will be window or undefined
+formattedName(); //+ this will not work. here this is not anotherPersonData. because anotherPersonData is not responsible
+//+ for calling this function. here this will be window or undefined
 
 //+ to fix this. we can use bind and pass this parameter. bind first parameter is this
 let { formattedName } = anotherPersonData;
@@ -740,7 +746,8 @@ function addMovie() {
 }
 
 const addMovie = () => {
-  console.log(this); //+ but it will not work for a arrow function. this doesnt mean anything in arrow function. so this is considered as a objet from the outside.
+  console.log(this); //+ but it will not work for a arrow function. this doesn't mean anything in arrow function.
+  //+ so this is considered as a objet from the outside.
 };
 
 //+ arrow function will be helpful when we need the this object from upper object. this object from the upper object can be
@@ -767,7 +774,7 @@ anotherPersonData.name;
 //+ classes are blue prints of objects. Define how an object looks like and what properties and methods it have
 
 class Product {
-  name = "DefaulT name"; //+ we cn give a default value`
+  name = "DefaulT name"; //+ we can give a default value`
   price;
   url;
 
@@ -827,3 +834,545 @@ class App {
 new Product("something");
 
 //! revisit the concept
+
+
+//! different way of calling function
+class cart{
+  oderProducts(){
+    console.log(this.items);
+  }
+
+  render(){
+    orderButton.addEventListener('click', this.oderProducts);
+    //+ if we do like that, we will not get a proper this as we expected in the calling function, instead we get button event
+
+    orderButton.addEventListener('click', () => this.oderProducts());
+    //+ but if we do like this, the targeting function will get proper this. because arrow functions will get outer this as inner this
+    //+ but as you can see, we should call the handler function in the arrow function. we can use .bind as well. this is another approach
+  }
+}
+
+//! private methods or properties
+//+ will only available inside the class or object
+class someName{
+  #privateVariable = [];   //+ initializing a private variable . to access it also we need to use #
+}
+
+//! Instance of
+//+ we can find if the object is created based on a class
+p instanceof person    //+ this will return true if p is a instance of person
+
+//! object creation
+const obj1 = new Object(); //+ slower
+
+//! Object Descriptors
+//+ inside every items of an object, some hidden properties are available. we can modify them
+Object.getOwnPropertyDescriptors(person)  //+ getOwnPropertyDescriptor will work too. This will give the details of it
+//+ it contains below properties
+//+ configurable: true
+//+ enumerable: true
+//+ value: "ans"
+//+ writable: true
+
+//+ we can add our own values to the object and configure these properties
+Object.defineProperties(person, 'name', {
+  configurable: true,  //+ we can give different values. if we set to false, we cannot delete the property
+  enumerable: true,   //+ if we set to false, we cannot iterate
+  value: "ans",
+  writable: true   //+ if we set to false, we cannot modify
+})
+
+//! Prototypes
+//+ prototypes are used before classes.
+
+//!Constructor function.
+//+ ways used before classes. its a blueprint of objects. can hold properties and classes . Classes uses constructor functions in the background
+function person(){
+  this.age = 20;
+  this.name = 'Max';
+  this.greet = function(){
+    console.log('Hi I am' + this.name);
+  };
+};
+
+const person = new Person();   //+ we can call person.greet() because we have a new keyword. if its not there we cant call it.
+person.greet();
+
+//+ what happens internally when we use new keyword is
+function person(){
+  this = {}   //+ it creates a this and bind everything and returns it.
+  this.age = 20;
+  this.name = 'Max';
+  this.greet = function(){
+    console.log('Hi I am' + this.name);
+  };
+
+  return this;
+};
+
+//! Prototype
+//+ inheritance in the classes is done by prototype in the background
+//+ prototype is an object inside the other object. every object have a prototype. prototype object is like a fallback object.
+//+ javascript will searches inside prototype for functions or properties if they cant find it outside.
+
+//+ for example person.toString(). js will try to find it in the person object and then it will search inside the prototype.
+//+ Till it reach the end of the prototype.
+//+ person.__proto__ is a prototype inside person. Inside of that you can find another prototype. Which will be available for all the objects
+//+ __proto__ will be available in all the objects
+//+ prototype property will be only available in function properties or objects. it will be like a constructor. whatever we menton
+//+ inside the prototype will be assigned to __proto__ and will be available for all the objects which made of
+//+ we can add modify function as below.
+person.prototype= {
+  printAge(){
+    console.log(this.age);
+  }
+}
+
+person.prototype.printAge= function(){   //+ this is the better approach than above. above we replace the entire object
+    console.log(this.age);
+}
+
+person.printAge();   //+ this will now execute
+
+//% class and extends use prototype
+class Person extends UserAge{
+  age = 20;
+  name = 'Max';
+  greet = function(){
+    console.log('Hi I am' + this.name);
+  };
+  constructor(){
+    super();
+  }
+}
+
+class UserAge{
+  myAge = function(){
+    console.log('Hi I am' + this.age);
+  };
+}
+
+let p = new Person()
+//+ if we do p.__proto__ , we can see UserAge and inside we can see the myAge function.
+//+ Methods in classes will be available as a new prototype for optimization
+//+ assigning function to a property or variable can cause performance issues. very small
+
+//+ for an existing object, if we want to modify or see prototype, we can use some methods.
+Object.getPrototypeOf(p);
+
+//+ we can set using below function
+Object.setPrototypeOf(person, {
+  ...Object.getPrototypeOf(p),
+  printRating: function () {
+    console.log(5);
+  }
+})
+
+const student = Object.create({printRating: function () {     //+ we can create empty object with prototype
+  console.log(5);
+}});
+
+const student = Object.create({printRating: function () {     //+ we can do like this as well
+  console.log(5);
+}}, {name: {
+  configurable: true,
+  enumerable: true,
+  value: "ans",
+  writable: true
+}});
+student.name ="max"
+
+//! revisit the project
+
+//! Attaching data to an element
+//* <div class="className" data-some-data-value="value of data"></div>
+//+ we can add data top the element like this
+
+//+ we can see all the data using
+console.log(element.dataset)
+const some = element.dataset.someDataValue;    //+ here the data attribute name automatically convert to pascal casing
+element.dataset.someInfo = 'Bla Bla';    //+ this will be added to the element
+
+//! Finding the box dimensions
+element.getBoundingClientRect();   //+ this will give the dimension of the element in the screen, x, y, height properties available
+//+ x and y will be considered from left top corner. and x will increase to the right. y will increase to the bottom
+$0.getBoundingClientRect() //+ can be used as a shortcut for selecting some element
+$0.offsetTop //+ this will give the top length;
+$0.offsetLeft //+ this will give left distance
+
+$0.clientTop  //+ this can be used to find the top distance from left top of the element to the inner content
+$0.clintLeft  //+ this can be used to find the left distance from left top of the element to the inner content
+
+$0.offsetHeight //+ can be used to find the height of the element
+$0.offsetWidth  //+ can be used to find the width of the element
+
+$0.clientWidth  //+ this can give the width of inner item in the element
+$0.clientHeight
+
+$0.scrollHeight //+ can be used to view the entire scrollable height. which includes what we not showing on the UI
+$0.scrollTop  //+ this will give the distance of scroll from the top. (how much we scrolled)
+//+ we can see element more on msdn
+
+window.innerWidth  //+ for entire window width
+window.innerHeight
+
+document.documentElement.clientWidth  //+ used to find the total body width. excluding scrollbar. above method consider scrollbar
+document.documentElement.clientHeight
+
+//+ for setting the values, we cannot use this. we need to use style
+
+$0.scrollHeight
+
+element.scrollIntoView();   //+ this will scroll to the element
+element.scrollIntoView({behavior: 'smooth'});
+
+element.scrollTo(0, 100);   //+ can be used to scroll to specific pixel
+element.scrollBy(0, 100)
+element.scrollBy({top:50, behavior: 'smooth'})
+
+
+//! template
+//+ for creating an html element, we were using inner html.
+const cartEl = document.createElement("section");
+cartEl.innerHTML = `
+  <h2>Total: \$${0}</h2>
+  <button>Order Now!</button>
+`;
+
+//+ instead we can use template tag in html. we can create a template element in HTML, which will not render in the UI. so we can get it and we can
+//+ use it in the js. so we don't manually need to write it on js.
+
+<template id="someID">
+  <h2>Total</h2>
+  <button>Order Now!</button>
+</template>
+
+const templateElement = document.getElementById("someID");
+const templateBody = document.importNode(templateElement.content, true);   //+ true for deep clone
+templateBody.querySelector('h2').textContent = "Total: $100";
+mainElement.append(templateBody);
+
+//+ this will make the html independent and easy from the js
+
+//! Adding script inside js
+const someScript = document.createElement('script');
+someScript.textContent = "alert('Hello');";
+document.head.append(someScript);
+//+ it can be useful if we want to download one script at perticular point of time only
+
+function startAnalytics(){
+  const analyticsScript = document.createElement('script');
+  analyticsScript.src = 'assets/script/analytics.js';
+  analyticsScript.defer = true;
+  document.head.append(analyticsScript);
+}
+
+//+ this function can be called whenever user needs and we can download the file and append to it.
+
+//! Timer
+const timerId = setTimeout(startAnalytics, 3000, [])  //+ first parameter is the function that we need to execute, and second parameter is interval in milliseconds
+//+ third parameter can be an array of parameters to the function that we are calling.
+clearTimeout(timerId);   //+ this will stop the timer
+
+
+
+const intervalID =  setInterval(startAnalytics, 3000, [])  //+ this will make the call in every 3 second interval
+clearInterval(intervalID);
+
+//! location
+//+ we can use location object to know about the website location and and navigate
+location.href = 'someLocation' //+ this can navigate to different url
+location.assign('someLocation')  //+ same as href
+location.replace('someLocation')   //+ this will completely replace the history. and back button wont work
+
+location.host //+ gives the address
+location.origin //+ gives full location
+location.pathname  //+ gives the path
+
+history.back()   //+ it will go back to the page
+history.forward()
+history.length
+history.go(5)   //+ go back 5 steps backward
+
+navigator  //+ this contains browser info and some machine details
+navigator.userAgent //+cthis is supposed to give the browwser name, but it is fake
+navigator.clipboard   //+ can access clipboard.
+
+navigator.geolocation.getCurrentPosition((data) =>  {console.log(data)})   //+ for getting location.
+
+//! Date
+const date = new Date();   //+ this will give current date
+date.getTime()  //+ gives time
+date.getDate()
+
+const anotherDate = new Date('07/11/2020');
+
+throw new Error('something went wrong');  //+ creating error message. gives information of line
+
+//! Events
+// https://developer.mozilla.org/en-US/docs/Web/Events
+const button = document.getElementById("buttonID");
+function buttonClickHandler(){}
+button.onclick(buttonClickHandler);
+//+ we can do like this, using this, we can only add one event functions. if we do 2 time, it actually overrides the old one. mot recommended
+
+button.addEventListener('click', buttonClickHandler);
+
+button.removeEventListener('click', buttonClickHandler);
+//+ here the same function should be passed. srrow functions might not work. we need to put the function in a constant and use it
+//+ if we use bind, we might need to put it in another function
+
+
+button.addEventListener('click', buttonEvent);
+const buttonEvent = function buttonHandler(event){   //+ here event will contains the details of the event
+  console.log(event);
+  event.target;   //+ this contains the element which caused the event
+  event.target.disabled = true;    //+ button have disabled property we can set to true
+}
+
+//! Other events
+button.addEventListener('mouseenter', buttonClickHandler);  //+ if mouse enters the element. have relatedTarget property in event, which shows which
+//+ was the previous element was before moving the mouse. if we move fast, then the value will be html
+
+window.addEventListener('scroll', buttonClickHandler); //+ we can add to scrolling as well
+
+formElement.addEventListener('submit', (event)=>{
+  event.preventDefault();   //+ this will prevent the default behaviour of the browser. for example, for form tag and submit, when we submit, by default
+  //+ the browser will reload. this method is available in every event
+})
+
+//% events have bubbling and capturing
+//+ when we do a event, first it will go through capturing phase. then it will go through bubbling phase. capturing will gro from outside to inside
+//+ of the element section . bubbling do the opposite. by default events are bubbling. inner element event happens first and then outer event.
+button.addEventListener('click', buttonEvent, true);    //+ this will change the default behaviour.
+
+//! event delegation
+//+ when we have a ul and multiple li. we dont need to add event listener to every li. instead we can add it to the ul(parent). so
+//+ it will work automatically for all inner element.
+list.addEventListener('click', event => {
+  event.target.classList.toggle('highlight')  //+ here one single even handle all of them. it will be defficult for complex structure
+})
+
+//+ but we can use element traversing to do it.
+
+button.click();   //+ for clicking the button manually
+//+ if we use this inside an event, it will give the element which is registered with the event
+
+//! Drag and drop
+//+ mark the element as draggable --> listen to dragstart event --> Accept drop over dragenter and dragover events - prevent default
+//+ --> listen to dragleave event(optional)  -->  listen to drop event and update data / UI -->  listen to dragend event and update UI/Data(optional)
+
+<h2 draggable="true">Draggable content</h2>
+draggableElement.addEventListener('dragstart', event => {
+  //+ here things we can do like change the cursor when we drag.
+  event.dataTransfer.setData('text/plain', this.id) //+ we can have different type
+  event.dataTransfer.effectAllowed = 'move';  //+ effect
+})
+
+receivingElement.addEventListener('dragenter', event => {
+  //+ we make the receiving element receivable
+  if(event.dataTransfer.type[0]=== 'text/plain'){ //+ to check if we dragging proper data
+    event.preventDefault();
+  }
+  ///+ we can add some styling for re\ceiving element
+  event.target.classList.add('highlight')
+})
+receivingElement.addEventListener('dragover', event => {
+  if(event.dataTransfer.type[0]=== 'text/plain'){
+    event.preventDefault();
+  }
+})
+
+receivingElement.addEventListener('dragleave', event => {
+  if(event.relatedTarget.closest('ul') != receivingElement){   //+ checking for the parent element
+    event.target.classList.remove('highlight');
+  }
+})
+
+receivingElement.addEventListener('drop', event =>{
+  const id = event.dataTransfer.getData('text/plain');
+  //+ some logic
+  if(event.dataTransfer.dropEffect){//+ only be succeeded when drop is successfull
+
+  }
+})
+
+
+//! Pure functions
+//+ pure functions will produce same output for same input. and does not change anythingout of the function.
+function add(a, b){   //+ this is an example of pure function
+  return a + b;
+}
+
+function randomNumber(a){
+  return a + Math.random();
+}
+
+let value = 0;
+function add(a, b){
+  let sum = a + b;
+  value = sum  //+ this is the side effect
+  return sum;
+}
+
+//+ try to reduce impure function
+
+//! factory functions
+//+ a function which produces another function.
+function createTaxCalculator(tax) {
+  function calculateTax(amount) {
+    return amount * tax;
+  }
+
+  return calculateTax;
+}
+const calculateVatAmount = createTaxCalculator(0.19);
+const calculateIncomeTaxAmount = createTaxCalculator(0.25);
+
+console. Log(calculateVatAmount(100));
+console. log(calculateVatAmount (200));
+
+//! closure functions
+//+ every function in javascript is a closure
+//+ outer variables can be used in inner functions. but inner cant use outside
+//+ above example, tax will be memorized even when parent function finished executing. it will not delete the value from memory.
+//+ but we can still use it if we call the inner function. this is same for global variables. functions will remember those values.
+
+//! Recursive functions
+function powerOf(x, n){
+  let power = 1;
+  for(const i =0; i<n ; i++){
+    power*=x;
+  }
+  return power;
+}
+
+function powerOf(x, n){
+if(n==1){
+  return
+}
+  return X * powerOf(x, n-1);  //+ this is recursion, calling same function inside. we can save code length
+}
+
+//! Advanced recursion.. go back tho this topic
+
+//! Number
+//+ every number is floating point. numbers are stored as 64 bit floating points
+Number.MAX_VALUE;  //+ to check the max
+Number.MAX_SAFE_INTEGER
+
+(0.2 + 0.4).toFixed(2);   //+ we can use this to cut the points
+
+//! BIGINT
+let bigNumber = 68426843264872642764n;  //+ we can add n at the end
+//+ we can do calculations. bu we cant mix the type.
+BigInt(10);   //+ this will convert int to bigint
+
+//= javascript have infinity
+Number.isFinite(infinity);  //+ false
+Math.pow();
+Math.cos();   //+ there are lot of other functions
+
+//! Random
+Math.random(); //+ this will generate a random number between 0 and 1
+Math.floor(num);  //+ this will remove the decimal points
+function randomBetween(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+//! String
+const stringValue = 'hello';
+stringValue.toUpperCase();
+stringValue.startsWith('he');
+
+//! Tagged template
+//+ go back if needed.
+
+//! Regular expressions
+//+ it will check for pattern
+const regex = new RegExp('');  //+ we can check like this
+const regex= /^\S+@\S+\.\S+S/;   //+ the expression will be between //. this is for email
+regex.test(stringToBeTested)
+
+const regex2 = /(h|H)ello/   //+ here if hello or Hello is there in anywhere of the string input,regex will be true
+//! go back if necessary.
+
+//! Javascript is single threaded.
+//+ javascript can only execute one task at a time. every step works in sequance. not simultaniously
+
+//+ if there is a time cunsuming operation, it will block other operations to finish.
+//+ if we make the operation asynchronous. then the task will taken care by different thread and other code will execute simultaneously
+//+ after the task exexution is done, we use a callback to communicate with the other code
+
+//+ addEventHandler works the same way. when we initialize the even handler. it will not block the other code execution by
+//+ keep on checking the click event happened or not. it will work in the background and we are passing a call back function to it
+
+//+ the asynch functions, for example timer callback function, which will be registered in a memory called Message que.
+//+ after call Stack is cleared with other functions. this call back functions will move to the stack from message que.
+//+ there is an event loop keep on running, which will check when stack is empty, and it will select the items from message que
+//+ and move it to stack.
+
+navigator.geolocation.getCurrentPosition(successFunction, errorFunction); //+ for example, this function expects a callback. which will be called when its succesfull and failed
+console.log('getting geo location')   //+ this will execute immediately without waiting.
+
+//! Promises
+//+ if we have multiple callback functions, we can use .then() which makes the code more readable. but the function should support it.
+//+ instead of passing callbacks, we can call then(). but older function doesnt have it
+//+ we can construct a promise variable and it will be set when we call the .then()
+
+function setTimer(duration){
+  const promise = new Promise((resolve, reject) => {  //+execute when we call then()
+    setTimeout(()=>{resolve();}, duration);   //+ here the resolve function executes inside the timer
+  })
+
+  return promise;
+}
+
+setTimer(2000).then((data) => {console.log(data);});   //+ we can call the timer like this. and pass the then function
+//+ we can chain the promises
+
+//! Promise error
+const getPosition = opts => {
+  const promise = new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      success => {
+        resolve(success);
+      },
+      error => {
+        reject(error);
+      },
+      opts
+    );
+  });
+  return promise;
+};
+
+getPosition().then(posData => {
+    positionData = posData;
+    return setTimer(2000);
+})
+.catch(err => {   //+ we can call the error like this
+  console.log(err);
+  return 'on we go...';
+});
+
+//! await and async
+async function trackUserHandler(){
+  const postData = await getPosition();   //+ it will add the then() in the background and return the value to the const. easy coding
+}
+
+//+ we can do error handling by try catchh here
+//! promise.all() promise.race()
+//! Must go back again. IMP concept
+
+//! Network request
+// https://jsonplaceholder.typicode.com/
+//+ can be used for dummy api requests
+//! xml http request
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');  //+ This doesnt make a request yet. just configuring
+xhr.onload = function () {    //+ calls the function when we load the data
+  const resp = JSON.parse(xhr.response);  //+ Json.parse will convert json to JS. if we add xhr.responseType = 'json'; then the data will be automatically parsed
+};
+xhr.send();     //+ for making the request
